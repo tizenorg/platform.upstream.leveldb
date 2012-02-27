@@ -1,0 +1,10 @@
+prefix=/usr
+exec_prefix=${prefix}
+libdir=${exec_prefix}/lib
+includedir=${prefix}/include
+
+Name: libleveldb
+Description: LevelDB Library
+Version: 1.1
+Libs: -L${libdir} -lleveldb
+Cflags: -I${includedir}
