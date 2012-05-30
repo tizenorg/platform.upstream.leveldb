@@ -5,6 +5,7 @@ Release:    1
 Group:      libs
 License:    Google
 Source0:    %{name}-%{version}.tar.gz
+Source1001: packaging/leveldb.manifest 
 
 %description
 Description: leveldb
@@ -24,6 +25,7 @@ Description: leveldb library.
 %setup -q
 
 %build
+cp %{SOURCE1001} .
 make %{?jobs:-j%jobs}
 
 %install
@@ -31,6 +33,7 @@ rm -rf %{buildroot}
 %make_install
 
 %files -n libleveldb
+%manifest leveldb.manifest
 %defattr(-,root,root,-)
 %{_libdir}/libleveldb.so
 %{_libdir}/libleveldb.so.0
