@@ -8,9 +8,9 @@ CC = g++
 # Uncomment exactly one of the lines labelled (A), (B), and (C) below
 # to switch between compilation modes.
 
-OPT ?= -O2 -DNDEBUG       # (A) Production use (optimized mode)
+# OPT ?= -O2 -DNDEBUG       # (A) Production use (optimized mode)
 # OPT ?= -g2              # (B) Debug mode, w/ full line-level debugging symbols
-# OPT ?= -O2 -g2 -DNDEBUG # (C) Profiling mode: opt, but w/debugging symbols
+OPT ?= -O2 -g2 -DNDEBUG # (C) Profiling mode: opt, but w/debugging symbols
 #-----------------------------------------------
 
 # detect what platform we're building on
@@ -50,7 +50,7 @@ srcdir = .
 DESTDIR=$(CURDIR)/debian/tmp
 am__strip_dir = f=`echo $$p | sed -e 's|^.*/||'`;
 
-CFLAGS = -c -fPIC -I. -I./include $(PORT_CFLAGS) $(PLATFORM_CFLAGS) $(OPT) $(SNAPPY_CFLAGS)
+CFLAGS = -c -fPIC -I. -I./include $(PORT_CFLAGS) $(PLATFORM_CFLAGS) $(OPT) $(SNAPPY_CFLAGS) -fvisibility=hidden -fvisibility-inlines-hidden
 
 LDFLAGS += $(PLATFORM_LDFLAGS) $(SNAPPY_LDFLAGS) $(GOOGLE_PERFTOOLS_LDFLAGS)
 
