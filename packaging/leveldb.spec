@@ -5,6 +5,7 @@ Release:    1
 Group:      System/Libraries
 License:    BSD-3-Clause
 Source0:    %{name}-%{version}.tar.gz
+Source1001: 	leveldb.manifest
 
 %description
 LevelDB is a fast key-value storage library written at Google
@@ -34,6 +35,7 @@ Development Files.
 
 %prep
 %setup -q
+cp %{SOURCE1001} .
 
 %build
 make libdir=%{_libdir} %{?jobs:-j%jobs}
@@ -48,7 +50,7 @@ make install DESTDIR=%{buildroot} libdir=%{_libdir}
 
 
 %files -n libleveldb
-%manifest leveldb.manifest
+%manifest %{name}.manifest
 %defattr(-,root,root,-)
 %{_libdir}/libleveldb.so.0
 %{_libdir}/libleveldb.so.1.1.0
@@ -57,6 +59,7 @@ make install DESTDIR=%{buildroot} libdir=%{_libdir}
 
 
 %files devel
+%manifest %{name}.manifest
 
 %{_libdir}/libmemenv.so
 %{_libdir}/pkgconfig/leveldb.pc
