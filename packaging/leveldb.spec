@@ -51,6 +51,7 @@ make install DESTDIR=%{buildroot} libdir=%{_libdir}
 
 %files -n libleveldb
 %manifest %{name}.manifest
+%license LICENSE
 %defattr(-,root,root,-)
 %{_libdir}/libleveldb.so.0
 %{_libdir}/libleveldb.so.1.1.0
