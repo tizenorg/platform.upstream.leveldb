@@ -50,7 +50,7 @@ srcdir = .
 DESTDIR=$(CURDIR)/debian/tmp
 am__strip_dir = f=`echo $$p | sed -e 's|^.*/||'`;
 
-CFLAGS = -c -fPIC -I. -I./include $(PORT_CFLAGS) $(PLATFORM_CFLAGS) $(OPT) $(SNAPPY_CFLAGS)
+CFLAGS += -c -fPIC -I. -I./include $(PORT_CFLAGS) $(PLATFORM_CFLAGS) $(OPT) $(SNAPPY_CFLAGS)
 
 LDFLAGS += $(PLATFORM_LDFLAGS) $(SNAPPY_LDFLAGS) $(GOOGLE_PERFTOOLS_LDFLAGS)
 
@@ -251,7 +251,7 @@ distclean: clean
 $(LIBRARY): $(LIBOBJECTS)
 	rm -f $@
 	#$(AR) -rs $@ $(LIBOBJECTS)
-	$(CC) -shared -Wl,-soname,libleveldb.so -o libleveldb.so.1.1.0 $(LIBOBJECTS)
+	$(CC) -shared -Wl,-soname,libleveldb.so -o libleveldb.so.1.1.0 $(LDFLAGS) $(LIBOBJECTS)
 
 db_bench: db/db_bench.o $(LIBOBJECTS) $(TESTUTIL)
 	$(CC) $(LDFLAGS) db/db_bench.o $(LIBOBJECTS) $(TESTUTIL) -o $@
