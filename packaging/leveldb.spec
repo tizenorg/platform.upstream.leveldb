@@ -3,7 +3,7 @@ Summary:    A fast key-value storage library
 Version: 	1.1
 Release:    1
 Group:      System/Libraries
-License:    BSD-3-Clause
+License:    BSD-2.0
 Source0:    %{name}-%{version}.tar.gz
 Source1001: 	leveldb.manifest
 
