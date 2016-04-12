@@ -7,6 +7,11 @@
 
 #include <string>
 
+#ifndef EXPORT_API
+#define EXPORT_API
+#endif // EXPORT_API
+
+
 namespace leveldb {
 
 class Slice;
@@ -15,7 +20,7 @@ class Slice;
 // used as keys in an sstable or a database.  A Comparator implementation
 // must be thread-safe since leveldb may invoke its methods concurrently
 // from multiple threads.
-class Comparator {
+class EXPORT_API Comparator {
  public:
   virtual ~Comparator();
 
@@ -56,7 +61,7 @@ class Comparator {
 // Return a builtin comparator that uses lexicographic byte-wise
 // ordering.  The result remains the property of this module and
 // must not be deleted.
-extern const Comparator* BytewiseComparator();
+EXPORT_API extern const Comparator* BytewiseComparator();
 
 }  // namespace leveldb
 

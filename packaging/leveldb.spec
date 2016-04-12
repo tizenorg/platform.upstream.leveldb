@@ -38,8 +38,8 @@ Development Files.
 cp %{SOURCE1001} .
 
 %build
-export CFLAGS+=" -flto "
-export CXXFLAGS+=" -flto "
+export CFLAGS+=" -flto  -fvisibility=hidden -DEXPORT_API=\"__attribute__((visibility(\\\"default\\\")))\" "
+export CXXFLAGS+=" -flto  -fvisibility=hidden -DEXPORT_API=\"__attribute__((visibility(\\\"default\\\")))\" "
 
 make libdir=%{_libdir} %{?jobs:-j%jobs}
 

@@ -21,15 +21,20 @@
 #include <stdint.h>
 #include "leveldb/slice.h"
 
+#ifndef EXPORT_API
+#define EXPORT_API
+#endif // EXPORT_API
+
+
 namespace leveldb {
 
 class Cache;
 
 // Create a new cache with a fixed size capacity.  This implementation
 // of Cache uses a least-recently-used eviction policy.
-extern Cache* NewLRUCache(size_t capacity);
+EXPORT_API extern Cache* NewLRUCache(size_t capacity);
 
-class Cache {
+class EXPORT_API Cache {
  public:
   Cache() { }
 

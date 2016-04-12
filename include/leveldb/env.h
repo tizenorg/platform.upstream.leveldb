@@ -19,6 +19,11 @@
 #include <stdint.h>
 #include "leveldb/status.h"
 
+#ifndef EXPORT_API
+#define EXPORT_API
+#endif // EXPORT_API
+
+
 namespace leveldb {
 
 class FileLock;
@@ -28,7 +33,7 @@ class SequentialFile;
 class Slice;
 class WritableFile;
 
-class Env {
+class EXPORT_API Env {
  public:
   Env() { }
   virtual ~Env();
@@ -152,7 +157,7 @@ class Env {
 };
 
 // A file abstraction for reading sequentially through a file
-class SequentialFile {
+class EXPORT_API SequentialFile {
  public:
   SequentialFile() { }
   virtual ~SequentialFile();
@@ -178,7 +183,7 @@ class SequentialFile {
 };
 
 // A file abstraction for randomly reading the contents of a file.
-class RandomAccessFile {
+class EXPORT_API RandomAccessFile {
  public:
   RandomAccessFile() { }
   virtual ~RandomAccessFile();
@@ -199,7 +204,7 @@ class RandomAccessFile {
 // A file abstraction for sequential writing.  The implementation
 // must provide buffering since callers may append small fragments
 // at a time to the file.
-class WritableFile {
+class EXPORT_API WritableFile {
  public:
   WritableFile() { }
   virtual ~WritableFile();
@@ -216,7 +221,7 @@ class WritableFile {
 };
 
 // An interface for writing log messages.
-class Logger {
+class EXPORT_API Logger {
  public:
   Logger() { }
   virtual ~Logger();
@@ -232,7 +237,7 @@ class Logger {
 
 
 // Identifies a locked file.
-class FileLock {
+class EXPORT_API FileLock {
  public:
   FileLock() { }
   virtual ~FileLock();
@@ -243,24 +248,24 @@ class FileLock {
 };
 
 // Log the specified data to *info_log if info_log is non-NULL.
-extern void Log(Logger* info_log, const char* format, ...)
+EXPORT_API extern void Log(Logger* info_log, const char* format, ...)
 #   if defined(__GNUC__) || defined(__clang__)
     __attribute__((__format__ (__printf__, 2, 3)))
 #   endif
     ;
 
 // A utility routine: write "data" to the named file.
-extern Status WriteStringToFile(Env* env, const Slice& data,
+EXPORT_API extern Status WriteStringToFile(Env* env, const Slice& data,
                                 const std::string& fname);
 
 // A utility routine: read contents of named file into *data
-extern Status ReadFileToString(Env* env, const std::string& fname,
+EXPORT_API extern Status ReadFileToString(Env* env, const std::string& fname,
                                std::string* data);
 
 // An implementation of Env that forwards all calls to another Env.
 // May be useful to clients who wish to override just part of the
 // functionality of another Env.
-class EnvWrapper : public Env {
+class EXPORT_API EnvWrapper : public Env {
  public:
   // Initialize an EnvWrapper that delegates all calls to *t
   explicit EnvWrapper(Env* t) : target_(t) { }

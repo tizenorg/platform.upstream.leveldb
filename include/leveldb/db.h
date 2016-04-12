@@ -10,6 +10,11 @@
 #include "leveldb/iterator.h"
 #include "leveldb/options.h"
 
+#ifndef EXPORT_API
+#define EXPORT_API
+#endif // EXPORT_API
+
+
 namespace leveldb {
 
 static const int kMajorVersion = 1;
@@ -23,13 +28,13 @@ class WriteBatch;
 // Abstract handle to particular state of a DB.
 // A Snapshot is an immutable object and can therefore be safely
 // accessed from multiple threads without any external synchronization.
-class Snapshot {
+class EXPORT_API Snapshot {
  protected:
   virtual ~Snapshot();
 };
 
 // A range of keys
-struct Range {
+struct EXPORT_API Range {
   Slice start;          // Included in the range
   Slice limit;          // Not included in the range
 
@@ -40,7 +45,7 @@ struct Range {
 // A DB is a persistent ordered map from keys to values.
 // A DB is safe for concurrent access from multiple threads without
 // any external synchronization.
-class DB {
+class EXPORT_API DB {
  public:
   // Open the database with the specified "name".
   // Stores a pointer to a heap-allocated database in *dbptr and returns
@@ -147,13 +152,13 @@ class DB {
 
 // Destroy the contents of the specified database.
 // Be very careful using this method.
-Status DestroyDB(const std::string& name, const Options& options);
+EXPORT_API Status DestroyDB(const std::string& name, const Options& options);
 
 // If a DB cannot be opened, you may attempt to call this method to
 // resurrect as much of the contents of the database as possible.
 // Some data may be lost, so be careful when calling this function
 // on a database that contains important information.
-Status RepairDB(const std::string& dbname, const Options& options);
+EXPORT_API Status RepairDB(const std::string& dbname, const Options& options);
 
 }  // namespace leveldb
 

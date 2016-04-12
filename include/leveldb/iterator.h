@@ -18,9 +18,14 @@
 #include "leveldb/slice.h"
 #include "leveldb/status.h"
 
+#ifndef EXPORT_API
+#define EXPORT_API
+#endif // EXPORT_API
+
+
 namespace leveldb {
 
-class Iterator {
+class EXPORT_API Iterator {
  public:
   Iterator();
   virtual ~Iterator();
@@ -90,10 +95,10 @@ class Iterator {
 };
 
 // Return an empty iterator (yields nothing).
-extern Iterator* NewEmptyIterator();
+EXPORT_API extern Iterator* NewEmptyIterator();
 
 // Return an empty iterator with the specified status.
-extern Iterator* NewErrorIterator(const Status& status);
+EXPORT_API extern Iterator* NewErrorIterator(const Status& status);
 
 }  // namespace leveldb
 

@@ -20,9 +20,14 @@
 #include <string.h>
 #include <string>
 
+#ifndef EXPORT_API
+#define EXPORT_API
+#endif // EXPORT_API
+
+
 namespace leveldb {
 
-class Slice {
+class EXPORT_API Slice {
  public:
   // Create an empty slice.
   Slice() : data_(""), size_(0) { }
@@ -84,12 +89,12 @@ class Slice {
   // Intentionally copyable
 };
 
-inline bool operator==(const Slice& x, const Slice& y) {
+EXPORT_API inline bool operator==(const Slice& x, const Slice& y) {
   return ((x.size() == y.size()) &&
           (memcmp(x.data(), y.data(), x.size()) == 0));
 }
 
-inline bool operator!=(const Slice& x, const Slice& y) {
+EXPORT_API inline bool operator!=(const Slice& x, const Slice& y) {
   return !(x == y);
 }
 

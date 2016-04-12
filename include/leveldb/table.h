@@ -8,6 +8,11 @@
 #include <stdint.h>
 #include "leveldb/iterator.h"
 
+#ifndef EXPORT_API
+#define EXPORT_API
+#endif // EXPORT_API
+
+
 namespace leveldb {
 
 class Block;
@@ -19,7 +24,7 @@ struct ReadOptions;
 // A Table is a sorted map from strings to strings.  Tables are
 // immutable and persistent.  A Table may be safely accessed from
 // multiple threads without external synchronization.
-class Table {
+class EXPORT_API Table {
  public:
   // Attempt to open the table that is stored in bytes [0..file_size)
   // of "file", and read the metadata entries necessary to allow

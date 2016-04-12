@@ -16,9 +16,14 @@
 #include <string>
 #include "leveldb/slice.h"
 
+#ifndef EXPORT_API
+#define EXPORT_API
+#endif // EXPORT_API
+
+
 namespace leveldb {
 
-class Status {
+class EXPORT_API Status {
  public:
   // Create a success status.
   Status() : state_(NULL) { }

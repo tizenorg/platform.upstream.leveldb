@@ -17,13 +17,18 @@
 #include "leveldb/options.h"
 #include "leveldb/status.h"
 
+#ifndef EXPORT_API
+#define EXPORT_API
+#endif // EXPORT_API
+
+
 namespace leveldb {
 
 class BlockBuilder;
 class BlockHandle;
 class WritableFile;
 
-class TableBuilder {
+class EXPORT_API TableBuilder {
  public:
   // Create a builder that will store the contents of the table it is
   // building in *file.  Does not close the file.  It is up to the
