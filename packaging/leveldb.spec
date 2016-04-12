@@ -15,7 +15,7 @@ that provides an ordered mapping from string keys to string values.
 %package -n libleveldb
 Summary:   A fast key-value storage library
 Group:     System/Libraries
-	
+
 %description -n libleveldb
 LevelDB is a fast key-value storage library written at Google
 that provides an ordered mapping from string keys to string values.
@@ -25,7 +25,7 @@ that provides an ordered mapping from string keys to string values.
 Summary:   A fast key-value storage library - Development
 Group:     Development/Libraries
 Requires:   libleveldb
-	
+
 %description devel
 LevelDB is a fast key-value storage library written at Google
 that provides an ordered mapping from string keys to string values.
@@ -38,6 +38,9 @@ Development Files.
 cp %{SOURCE1001} .
 
 %build
+export CFLAGS+=" -flto "
+export CXXFLAGS+=" -flto "
+
 make libdir=%{_libdir} %{?jobs:-j%jobs}
 
 %install
